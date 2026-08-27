@@ -1,7 +1,7 @@
 name: Build APK & LIB
 on:
   push:
-    branches: [ principal ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -17,11 +17,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Dar permissão de execução
+      - name: Dar permissão e verificar arquivos
         run: |
           ls -la
           chmod +x gradlew
           ls -la gradlew
+          ls -la gradle/wrapper/
 
       - name: Compilar o projeto
         run: ./gradlew assembleRelease --no-daemon
