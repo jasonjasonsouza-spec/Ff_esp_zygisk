@@ -18,7 +18,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Dar permissão de execução
-        run: chmod +x gradlew
+        run: |
+          ls -la
+          chmod +x gradlew
+          ls -la gradlew
 
       - name: Compilar o projeto
         run: ./gradlew assembleRelease --no-daemon
