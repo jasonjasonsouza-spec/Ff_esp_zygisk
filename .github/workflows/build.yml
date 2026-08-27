@@ -1,7 +1,7 @@
 name: Build APK & LIB
 on:
   push:
-    branches: [ main ]
+    branches: [ principal ]
   workflow_dispatch:
 
 jobs:
@@ -17,11 +17,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Grant execute permission
+      - name: Dar permissão de execução
         run: chmod +x gradlew
 
-      - name: Build Release APK
-        run: ./gradlew assembleRelease
+      - name: Compilar o projeto
+        run: ./gradlew assembleRelease --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
