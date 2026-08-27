@@ -7,4 +7,4 @@ public class MainActivity extends Activity {
         super.onCreate(b);
         finish();
     }
-}
+}.
