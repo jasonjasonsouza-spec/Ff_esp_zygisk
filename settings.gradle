@@ -1,16 +1,39 @@
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
+plugins {
+    id 'com.android.application' version '8.1.0' apply false
+}
+
+android {
+    namespace 'com.zygisk.esp'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.zygisk.esp"
+        minSdk 30
+        targetSdk 34
+        versionCode 1
+        versionName "2.130.1"
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++17", "-fPIC", "-fvisibility=hidden"
+                arguments "-DANDROID_STL=c++_shared", "-DANDROID_ABI=arm64-v8a"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.22.1"
+        }
     }
 }
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 }
-rootProject.name = "FF_ESP_Zygisk"
-include(":app")
