@@ -1,4 +1,5 @@
 name: Build APK & LIB
+
 on:
   push:
     branches: [ main ]
@@ -6,12 +7,14 @@ on:
 
 jobs:
   build:
+    name: Construir
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Baixar código
         uses: actions/checkout@v4
 
-      - name: Set up JDK 17
+      - name: Configurar JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
@@ -27,13 +30,13 @@ jobs:
       - name: Compilar o projeto
         run: ./gradlew assembleRelease --no-daemon
 
-      - name: Upload APK
+      - name: Subir APK
         uses: actions/upload-artifact@v4
         with:
           name: FF_ESP_APK
           path: app/build/outputs/apk/release/*.apk
 
-      - name: Upload LIB
+      - name: Subir LIB
         uses: actions/upload-artifact@v4
         with:
           name: FF_ESP_LIB
