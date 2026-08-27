@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.22.1)
+project("zygisk_esp")
+add_library(zygisk_esp SHARED Main.cpp And64InlineHook.cpp)
+target_include_directories(zygisk_esp PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+find_library(log-lib log)
+target_link_libraries(zygisk_esp ${log-lib} EGL GLESv3 android)
